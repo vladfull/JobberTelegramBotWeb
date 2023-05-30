@@ -46,7 +46,7 @@ namespace JobberTelegramBot.Models
             string textukr = $"Напиши резюме на роботу {prof[0].UserProffesion}. Мене звати {prof[0].UserName}. " +
                 $"Претендую на заробітню плату {prof[0].UserSalary} гривень. Хочу працювати в {prof[0].UserJobLocation}";
             string texteng = $"Write a resume for the job of a {prof[0].UserProffesion}. My name is {prof[0].UserName}. " +
-                $"I apply for a salary of UAH {prof[0].UserSalary}. I want to work in {prof[0].UserJobLocation}";
+                $"I apply for a salary of UAH {prof[0].UserSalary}. I want to work in {prof[0].UserJobLocation}.";
             var response = await _httpClient.GetAsync($"https://jobberwebapi.azurewebsites.net/api/Resume/GetResumeAsync?question={texteng}");
             response.EnsureSuccessStatusCode();
             var memorystream = await response.Content.ReadAsStreamAsync();   

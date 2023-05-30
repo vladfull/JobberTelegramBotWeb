@@ -35,7 +35,7 @@ internal class Program
                 cancellationToken
                 );
             Console.WriteLine("Запущений бот " + botClient.GetMeAsync().Result.FirstName);
-            Console.ReadLine();
+            //Console.ReadLine();
             Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellation)
             {
                 var errorMessage = exception switch
@@ -291,10 +291,35 @@ internal class Program
                 if (apiClient.GetUser(chatId).Result.Count != 0) return true;
                 return false;
         }
-        
 
+        var builder = WebApplication.CreateBuilder(args);
+
+        // Add services to the container.
+        builder.Services.AddRazorPages();
+
+        var app = builder.Build();
+
+        // Configure the HTTP request pipeline.
+        if (!app.Environment.IsDevelopment())
+        {
+            app.UseExceptionHandler("/Error");
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            app.UseHsts();
+        }
+
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();
+
+        app.UseRouting();
+
+        app.UseAuthorization();
+
+        app.MapRazorPages();
+
+        app.Run();
+        //Console.ReadLine();
     }
-        
+
 }
 public class Profile
 {
